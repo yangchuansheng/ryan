@@ -1,0 +1,89 @@
+{{ define "main" }}
+  <div class="container"> 
+    <div class="row">
+      <div class="col-lg-8 col-md-10">
+        {{ with .Content }}
+          <div class="well">
+            {{.}}
+          </div>
+        {{ end }}
+
+        <div class="posts-list">
+          {{ $pag := .Paginate (where .Data.Pages "Type" "posts") }}
+          {{ range $pag.Pages }}
+            <article class="post-preview">
+              <a href="{{ .Permalink }}">
+                <h2 class="post-title">{{ .Title }}</h2>
+                {{ if .Params.subtitle }}
+                  <h3 class="post-subtitle">
+                  {{ .Params.subtitle }}
+                  </h3>
+                {{ end }}
+              </a>
+
+              {{ partial "post_meta.html" . }}
+	      <div class="view">
+	        <img src="{{ .Params.img }}">
+              </div>
+              <div class="post-entry">
+                {{ if .Truncated }}
+		<!--{{ .Summary }}-->
+		  <a href="{{ .Permalink }}" class="post-read-more">{{ i18n "readMore" }}</a>
+                {{ else }}
+                  {{ .Content }}
+                {{ end }}
+              </div>
+
+              {{ if .Params.tags }}
+                <span class="post-meta">
+                {{ range .Params.tags }}
+                  #<a href="{{ $.Site.LanguagePrefix | absURL }}tags/{{ . | urlize }}/">{{ . }}</a>&nbsp;
+                {{ end }}
+                </span>
+              {{ end }}
+            </article>
+          {{ end }}
+        </div>
+
+        {{ if or (.Paginator.HasPrev) (.Paginator.HasNext) }}
+          <ul class="pager main-pager">
+            {{ if .Paginator.HasPrev }}
+              <li class="previous">
+                <a href="{{ .URL }}page/{{ .Paginator.Prev.PageNumber }}">&larr; {{ i18n "newerPosts" }}</a>
+              </li>
+            {{ end }}
+            {{ if .Paginator.HasNext }}
+              <li class="next">
+                <a href="{{ .URL }}page/{{ .Paginator.Next.PageNumber }}">{{ i18n "olderPosts" }} &rarr;</a>
+              </li>
+            {{ end }}
+          </ul>
+        {{ end }}
+        <div align="center" class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+          {{ template "_internal/pagination.html" . }}
+          {{ range .Paginator.Pages }}
+          {{ end }}
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-2">
+        <!-- 个人简介 -->
+        {{ partial "about.html" . }}
+        <!-- 加群 -->
+        {{ partial "join.html" . }}
+        <!-- 标签 -->
+        <div class="sidebar-wrap">
+          <h4 class="sidebar-title">标签</h4>
+          <div class="list-unstyled tags-cloud">
+          {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+            {{ if gt $taxonomy.Count 1 }}
+            <a href="/tags/{{ $name | urlize }}"><i class="fa fa-tags"></i>{{ $name }}({{ $taxonomy.Count }})</a>
+            {{ end }}
+          {{ end }}
+          </div>
+        </div>
+        <!-- 友情链接 -->
+        {{ partial "friend.html" . }}
+      </div>
+    </div>
+  </div>
+{{ end }}

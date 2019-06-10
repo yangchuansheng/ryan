@@ -1,0 +1,127 @@
+<!--
+If you want to include any custom html just before </head>, put it in /layouts/head_custom.html
+Do not put anything in this file - it's only here so that hugo won't throw an error if /layouts/head_custom.html doesn't exist.
+-->
+
+<!-- baidu analysis -->
+<meta name="baidu-site-verification" content="g8IYR9SNLF" />
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?cffe439e37449bb1c07ab26ab56484bb";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<!-- prism highlight -->
+<link rel="stylesheet" href="{{ "css/prism.css" | absURL }}" />
+<!--
+<link rel="stylesheet" href="{{ "https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/prism.css" | absURL }}" />
+-->
+
+<!-- mathjax -->
+{{ if .Params.mathjax}}
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre','code'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+{{ end }}
+
+{{ if isset .Site.Params "busuanzi" }}
+<!-- 不蒜子 -->
+<script async src="//cdn.busuanzi.ibruce.info/cdn/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 不蒜子计数初始值纠正 -->
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var int = setInterval(fixCount, 100);
+        var busuanziSiteOffset = {{ .Site.Params.busuanzi_site_offset }} 
+        function fixCount() {
+            if ($("#busuanzi_container_site_pv").css("display") != "none") {
+                clearInterval(int);
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
+            }
+        }
+    });
+</script>
+{{ end }}
+
+<!-- 页面加载进度条 -->
+<!--
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+-->
+<script src="{{ "js/pace.min.js" | absURL }}" data-no-instant></script>
+<!--
+<style>
+    .pace .pace-progress {
+        /*background: #1E92FB;*/ /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+-->
+
+<!-->页面预加载<-->
+<script src="{{ "js/instantclick.min.js" | absURL }}" data-no-instant></script>
+   <script data-no-instant>
+   InstantClick.on('change', function(isInitialLoad) {
+     if (isInitialLoad === false) {
+       if (typeof MathJax !== 'undefined') // support MathJax
+         MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+       if (typeof prettyPrint !== 'undefined') // support google code prettify
+         prettyPrint();
+       if (typeof _hmt !== 'undefined')  // support 百度统计
+         _hmt.push(['_trackPageview', location.pathname + location.search]);
+       if (typeof ga !== 'undefined')  // support google analytics
+           ga('send', 'pageview', location.pathname + location.search);
+     }
+   });
+   InstantClick.init();
+</script>
+
+<!--给网页标题增加特效-->
+<!--
+<script>
+step=0
+function flash_title()
+{
+step++
+if (step==3) {step=1}         
+if (step==1) {document.title='杨传胜的博客|Cloud Native|yangcs.net'}
+if (step==2) {document.title='【	】'}
+setTimeout("flash_title()",380);
+}
+flash_title()
+</script>
+-->
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gist-embed/2.7.1/gist-embed.min.js"></script>
+
+<!--谷歌广告-->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-3925981084585036",
+    enable_page_level_ads: true
+  });
+</script>

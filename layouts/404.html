@@ -1,0 +1,18 @@
+{{ define "header" }}<!-- No header on 404 pages -->{{ end }}
+{{ define "main" }}
+  <div role="main" class="container main-content">
+    <div class="text-center">
+      <h1>{{ i18n "pageNotFound" }}</h1>
+      <br/>
+      {{ if isset .Site.Params "errorpage" }}
+      <img src="{{ .Site.Params.errorpage }}" />
+      {{ else }}
+      <img src="{{ .Site.BaseURL }}/img/404-southpark.jpg" />
+      {{ end }}
+      <h2>Advice</h2>
+      <p>The original page maybe moved to another place, try to change the child-path near domain name to <a href="/posts">posts</a> or search the page title at search box, or just <a href="/">look around</a>.</p>
+      <p>原文可能并未删除只是移动了链接，请将域名后的子路径改成<a href="/posts">posts</a>试一试，或者在搜索框中搜索文章标题，或者<a href="/">随便看看</a>。</p>
+    </div>
+  </div>
+{{ end }}
+

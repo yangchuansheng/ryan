@@ -1,0 +1,68 @@
+{{ define "main" }}
+<div class="container" role="main" itemscope itemtype="http://schema.org/Article">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <!-- post metadata-->
+            {{ if isset .Params "postmeta" }}
+              {{ else }}
+            {{ partial "postmeta.html" . }}
+            {{ end }}
+            <article role="main" class="blog-post" itemprop="articleBody" id="content">
+                {{ partial "toc1.html" . }}
+                {{ .Content }}
+                <br />
+                <div style="text-align:center;color: #ccc;font-size:16px;font-family: cursive;">-------他日江湖相逢 <i class="fa fa-umbrella"></i> 再当杯酒言欢-------</div>
+                <script src="{{ "js/particle.js" | absURL }}"></script>
+                {{ if isset .Site.Params "reward" }}
+                {{ partial "reward.html" }}
+                {{ end }}
+                {{ if not (.Params.noshare) }}
+                {{ partial "share.html" }}
+                {{ end }}
+            </article>
+
+            <ul class="pager blog-pager">
+                {{ if .PrevInSection }}
+                <li class="previous">
+                    <a href="{{ .PrevInSection.Permalink }}" data-toggle="tooltip" data-placement="top" title="{{ .PrevInSection.Title }}">&larr; {{ i18n "previousPost" }}</a>
+                </li>
+                {{ end }} {{ if .NextInSection }}
+                <li class="next">
+                    <a href="{{ .NextInSection.Permalink }}" data-toggle="tooltip" data-placement="top" title="{{ .NextInSection.Title }}">{{ i18n "nextPost" }} &rarr;</a>
+                </li>
+                {{ end }}
+            </ul>
+            {{ if isset .Params "seealso" }}
+            {{ else }}
+            <div>
+                {{ $related := .Site.RegularPages.Related . | first 5 }} {{ with $related }}
+                <h2>相关文章</h2>
+                <ul>
+                    {{ range . }}
+                    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+                    {{ end }}
+                </ul>
+                {{ end }}
+            </div>
+            {{ end }}
+            <!-- post metadata 末尾不再显示统计 -->
+            {{ if isset .Params "postmeta" }}
+              {{ else }}
+              <!-- {{ partial "postmeta.html" . }} -->
+            {{ end }}
+            </div>
+        </div>
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <!-- gitments / livere-->
+            {{ if isset .Site.Params "comments" }}
+                {{ if isset .Params "nocomment" }}
+                {{ else }}
+                  <!--{{ partial "gitments.html" . }}-->
+                  {{ partial "gitments.html" . }}
+                {{ end }}
+            {{ end }}
+        </div>
+    </div>
+    </section>
+</div>
+{{ end }}

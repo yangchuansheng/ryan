@@ -1,0 +1,106 @@
+<!--
+If you want to include any custom html just before </body>, put it in /layouts/footer_custom.html
+Do not put anything in this file - it's only here so that hugo won't throw an error if /layouts/footer_custom.html doesn't exist.
+-->
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<!--
+{{ if isset .Site.Params "sharebutton" }}
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a66dcf22e59dc17"></script>
+{{ end }}
+-->
+<!--share this-->
+<!--
+<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=59dcd2ed8f5cbd0012eba1a5&product=sticky-share-buttons' async='async'></script>
+-->
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<!-- 网页预加载 -->
+<script src="https://polyfill.io/v2/polyfill.min.js?features=IntersectionObserver"></script>
+<script type="text/javascript" src="{{ "js/quicklink.umd.js" | absURL }}"></script>
+<script>
+window.addEventListener('load', () =>{
+   quicklink();
+});
+</script>
+
+<!-- 点击特效 -->
+<!--
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas>
+<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+<script type="text/javascript" src="{{ "js/fireworks.js" | absURL }}"></script>
+-->
+<script type="text/javascript">
+/* 鼠标特效 */
+var a_idx = 0;
+jQuery(document).ready(function($) {
+    $("body").click(function(e) {
+        var a = new Array("Docker", "Kubernetes", "Prometheus", "Envoy", "Istio", "Service Mesh", "Cloud Native");
+        var $i = $("<span />").text(a[a_idx]);
+        a_idx = (a_idx + 1) % a.length;
+        var x = e.pageX,
+        y = e.pageY;
+        function randomColor() {
+          var flakeColor = new Array("#FFDA65", "#00BFFF", "#BA55D3", "#FFA07A", "#87CEEB", "#FFB6C1");
+          var snowColor = flakeColor[Math.floor(flakeColor.length * Math.random())];
+          return snowColor;
+        }
+        $i.css({
+            "z-index": 999999999999999999999999999999999999999999999999999999999999999999999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": randomColor()
+        });
+        $("body").append($i);
+        $i.animate({
+            "top": y - 180,
+            "opacity": 0
+        },
+        1500,
+        function() {
+            $i.remove();
+        });
+    });
+});
+</script>
+
+<!-- 图片缩放 -->
+<script type="text/javascript" src="{{ "js/lightbox.js" | absURL }}"></script>
+
+<!-- live2D 
+<script type="text/javascript">
+    var live2d_Path = '/live2d/model/pio/'
+    var message_Path = '/live2d/'
+    var home_Path = 'https://www.yangcs.net/'  //此处修改为你的域名，必须带斜杠
+</script>
+<script type="text/javascript" src="{{ "live2d/js/live2d.js" | absURL }}"></script>
+<script type="text/javascript" src="{{ "live2d/js/message.js" | absURL }}"></script>
+<script type="text/javascript">
+    loadlive2d("live2d", "/live2d/model/pio/model.json");
+</script>
+-->
+
+<!-- 音乐 -->
+<!--
+<link rel="stylesheet" href="{{ "css/APlayer.min.css" | absURL }}" />
+<div id="aplayer"></div>
+<script src="{{ "js/APlayer.min.js" | absURL }}"></script>
+<script src="{{ "js/music.js" | absURL }}"></script>
+-->
+
+<!-- 雪花 -->
+<!--
+<script type="text/javascript" src="{{ "js/snow.js" | absURL }}"></script>
+-->
+
+<!-- add video.js -->
+<!--
+<script src="https://vjs.zencdn.net/7.3.0/video.js"></script>
+-->
+<script src="https://cdn.plyr.io/3.4.7/plyr.js"></script>
+<script>const player = new Plyr('#player');</script>
+
+<!-- add github button -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
