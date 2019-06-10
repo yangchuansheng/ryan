@@ -1,12 +1,12 @@
-# Beautiful Hugo - A port of Beautiful Jekyll Theme
+# Ryan - Highly customizable open source theme for Hugo based static websites
 
-![Beautiful Hugo Theme Screenshot](https://github.com/halogenica/beautifulhugo/blob/master/images/screenshot.png)
+![Beautiful Hugo Theme Screenshot](images/site.png)
 
 ## Installation
 
     $ mkdir themes
     $ cd themes
-    $ git clone https://github.com/halogenica/beautifulhugo.git beautifulhugo
+    $ git clone https://github.com/yangchuansheng/ryan ryan 
 
 See [the Hugo documentation](http://gohugo.io/themes/installing/) for more information.
 
@@ -58,10 +58,6 @@ This can be achieved by running the next command prior to calling Hugo:
   
 See at [xor-gate/xor-gate.org](https://github.com/xor-gate/xor-gate.org) an example of how to add it to a continuous integration system.
   
-## About
-
-This is a port of the Jekyll theme [Beautiful Jekyll](http://deanattali.com/beautiful-jekyll/) by [Dean Attali](http://deanattali.com/aboutme#contact). It supports most of the features of the original theme.
-
 ## License
 
-MIT Licensed, see [LICENSE](https://github.com/halogenica/Hugo-BeautifulHugo/blob/master/LICENSE).
+MIT Licensed, see [LICENSE](https://github.com/yangchuansheng/ryan/blob/master/LICENSE).
